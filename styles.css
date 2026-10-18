@@ -479,7 +479,7 @@ html.js .lang-toggle { display: flex; }
 .lang-toggle button:focus-visible { background: var(--rose-deep); }
 .lang-toggle button.active {
   background: var(--pearl);
-  border-color: var(--pearl);
+  border-color: rgba(158, 99, 80, 0.6); /* thin rose outline — the pearl fill must keep its edge on the pearl page too */
   color: var(--plum);
 }
 body.lightbox-open .lang-toggle { opacity: 0; visibility: hidden; pointer-events: none; }

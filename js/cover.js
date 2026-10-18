@@ -43,6 +43,7 @@ export function initCover() {
   const beads = q('.poster-beads')
   const light = q('.cover-light')
   const enterNames = q('.cover-enter-names')
+  const stripes = q('.cover-stripes')
   const sparksLayer = q('.cover-sparks')
   const panels = [q('.cover-panel--l'), q('.cover-panel--r')]
   const skipBtn = q('.cover-skip')
@@ -210,10 +211,12 @@ export function initCover() {
     t.to(mono, { x: monoDx, y: monoDy, duration: 0.95, ease: 'power2.inOut' }, 2.25)
     t.to(stars, { autoAlpha: 0, duration: 0.6 }, 2.5)
 
-    // V · The panels part to pearl light — starburst, petals, the monogram
-    // bows out (3.15–4.4s)
+    // V · The panels part to pearl light — the velvet stripe texture belongs
+    // to the closed cover, so it dissolves with the parting (otherwise the
+    // dark lines keep printing over the revealed pearl page) (3.15–3.8s)
     t.to(panels[0], { xPercent: -101, duration: 1.15, ease: 'power3.inOut' }, 3.15)
     t.to(panels[1], { xPercent: 101, duration: 1.15, ease: 'power3.inOut' }, 3.15)
+    t.to(stripes, { autoAlpha: 0, duration: 0.65, ease: 'power1.out' }, 3.15)
     t.fromTo(light, { autoAlpha: 0, scale: 0.7 }, { autoAlpha: 1, scale: 1, duration: 1.1, ease: 'sine.out' }, 3.2)
     t.add(spawnSparks, 3.4)
     t.add(spawnPetals, 3.35)
@@ -233,7 +236,7 @@ export function initCover() {
     stopPetals()
     stopSparks()
     const reset = [cover, ...panels, mono, glow, light, initials, cue, skipBtn,
-      ...archDraw, ...monoDraw, monoStar, stars, posterFade, family, names, beads, enterNames]
+      ...archDraw, ...monoDraw, monoStar, stars, posterFade, family, names, beads, enterNames, stripes]
     gsap.killTweensOf(reset)
     gsap.set(reset, { clearProps: 'all' })
     for (const el of [...archDraw, ...monoDraw]) {
