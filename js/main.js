@@ -1,6 +1,7 @@
 // Entry point — boots only when dependencies are healthy; any failure falls
 // back to the fully readable static page (fail-safe, never traps the user).
 
+import { initLang } from './i18n.js'
 import { initCover } from './cover.js'
 import { initScroll } from './scroll.js'
 import { initRsvp } from './rsvp.js'
@@ -20,6 +21,10 @@ function failSafe(cause) {
 }
 
 try {
+  // Language first: even if GSAP is missing and the fail-safe strips the
+  // animated cover, the page is already in the visitor's language.
+  initLang()
+
   if (!window.gsap) throw new Error('GSAP unavailable')
   if (window.ScrollTrigger && gsap.registerPlugin) gsap.registerPlugin(ScrollTrigger)
 

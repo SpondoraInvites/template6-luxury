@@ -1,7 +1,10 @@
 // Gallery lightbox — progressive enhancement: built only when JS + GSAP are
 // healthy, from whatever images the gallery holds. Full-screen viewer with
 // caption, counter, arrow and keyboard navigation, touch swipe, and focus
-// management.
+// management. The viewer languages itself via i18n (labels re-applied on
+// language change through the data-i18n-attrs hooks in its markup).
+
+import { t, localDigits, onLanguageChange } from './i18n.js'
 
 export function initLightbox() {
   const items = [...document.querySelectorAll('.gallery-item img')]
@@ -14,17 +17,17 @@ export function initLightbox() {
   overlay.setAttribute('role', 'dialog')
   overlay.setAttribute('aria-modal', 'true')
   overlay.innerHTML = `
-    <button class="lightbox-close" type="button" data-lb="close" aria-label="Close">
+    <button class="lightbox-close" type="button" data-lb="close" data-i18n-attrs="aria-label:js.lightbox.close" aria-label="${t('js.lightbox.close')}">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5 L19 19 M19 5 L5 19"/></svg>
     </button>
-    <button class="lightbox-nav lightbox-nav--prev" type="button" data-lb="prev" aria-label="Previous photo">
+    <button class="lightbox-nav lightbox-nav--prev" type="button" data-lb="prev" data-i18n-attrs="aria-label:js.lightbox.prev" aria-label="${t('js.lightbox.prev')}">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 4 L7 12 L15 20"/></svg>
     </button>
     <figure class="lightbox-figure">
       <img alt="">
       <figcaption></figcaption>
     </figure>
-    <button class="lightbox-nav lightbox-nav--next" type="button" data-lb="next" aria-label="Next photo">
+    <button class="lightbox-nav lightbox-nav--next" type="button" data-lb="next" data-i18n-attrs="aria-label:js.lightbox.next" aria-label="${t('js.lightbox.next')}">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 4 L17 12 L9 20"/></svg>
     </button>
     <div class="lightbox-counter"></div>`
@@ -48,7 +51,7 @@ export function initLightbox() {
     els.img.src = source.currentSrc || source.src
     els.img.alt = source.alt
     els.caption.textContent = source.alt
-    els.counter.textContent = `${index + 1} / ${items.length}`
+    els.counter.textContent = localDigits(`${index + 1} / ${items.length}`)
     // Preload the neighbours so arrow/swipe navigation feels instant.
     for (const n of [index - 1, index + 1]) {
       const im = new Image()
@@ -116,4 +119,13 @@ export function initLightbox() {
     if (Math.abs(dx) > 45) render(index + (dx < 0 ? 1 : -1))
     touchX = null
   }, { passive: true })
+
+  // Language switch: the image alt texts (gallery figures + captions) are
+  // re-applied document-wide by i18n; refresh the mirrors kept here.
+  onLanguageChange(() => {
+    items.forEach((img) => img.closest('.gallery-item')?.setAttribute('aria-label', img.alt))
+    els.img.alt = items[index].alt
+    els.counter.textContent = localDigits(`${index + 1} / ${items.length}`)
+    if (overlay.classList.contains('open')) els.caption.textContent = items[index].alt
+  })
 }

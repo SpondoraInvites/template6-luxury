@@ -22,10 +22,10 @@
   --shadow-card: 0 1px 0 rgba(245, 226, 216, 0.6), 0 18px 40px -22px rgba(47, 17, 58, 0.35);
   --shadow-deep: 0 12px 34px rgba(31, 12, 40, 0.4);
 
-  --font-display: 'Cinzel', 'EB Garamond', Georgia, serif;
-  --font-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
-  --font-script: 'Ballet', 'EB Garamond', cursive;
-  --font-sans: 'Manrope', system-ui, sans-serif;
+  --font-display: 'Cinzel', 'EB Garamond', 'Noto Serif Bengali', Georgia, serif;
+  --font-serif: 'EB Garamond', 'Noto Serif Bengali', Georgia, 'Times New Roman', serif;
+  --font-script: 'Ballet', 'EB Garamond', 'Noto Serif Bengali', cursive;
+  --font-sans: 'Manrope', 'Noto Sans Bengali', system-ui, sans-serif;
 
   --pad-x: clamp(1.25rem, 5vw, 2rem);
   --leading: 1.6;
@@ -439,6 +439,50 @@ html.js .audio-toggle { display: grid; }
   letter-spacing: 0.1em;
   cursor: pointer;
 }
+
+/* ───────────── Language toggle (EN · বাং) ─────────────
+   Anchored in the free top-right corner of the viewport: above the
+   tap-to-reveal cover (whose texts it translates), clear of the bottom
+   control cluster (audio · skip · share) and out of the page flow. It
+   bows out while the gallery lightbox overlays the page so it can never
+   collide with the lightbox close button nearby. */
+.lang-toggle {
+  display: none;
+  position: fixed;
+  top: max(0.9rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  z-index: 46; /* above the cover (40), below the lightbox (70) */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+}
+html.js .lang-toggle { display: flex; }
+.lang-toggle button {
+  appearance: none;
+  margin: 0;
+  padding: 0.48em 0.95em;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  background: rgba(31, 12, 40, 0.55);
+  border: 1px solid rgba(183, 159, 199, 0.45);
+  color: var(--pearl);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+.lang-toggle button:first-child { border-radius: 999px 0 0 999px; border-right: 0; }
+.lang-toggle button:last-child { border-radius: 0 999px 999px 0; }
+.lang-toggle button:hover,
+.lang-toggle button:focus-visible { background: var(--rose-deep); }
+.lang-toggle button.active {
+  background: var(--pearl);
+  border-color: var(--pearl);
+  color: var(--plum);
+}
+body.lightbox-open .lang-toggle { opacity: 0; visibility: hidden; pointer-events: none; }
 
 /* ─────────────────────────── Page sections ─────────────────────────── */
 
@@ -1238,3 +1282,22 @@ body.lightbox-open { overflow: hidden; }
   }
   .poster-fade { top: 4vh; }
 }
+
+/* ───────────── Bengali typography ─────────────
+   The Bengali fallback faces (Noto) are loaded via the font stacks. Bengali
+   has no uppercase and wide letterspacing breaks conjoined letter shapes, so
+   the deco small-caps tracking is eased back when বাংলা is active. The “ও”
+   connector between the names also swaps off the cursive script face. */
+html[lang="bn"] .poster-and,
+html[lang="bn"] .hero-and { font-family: var(--font-serif); font-weight: 500; }
+html[lang="bn"] .cover-enter-names,
+html[lang="bn"] .poster-family,
+html[lang="bn"] .invocation,
+html[lang="bn"] .hero-announce,
+html[lang="bn"] .event-tag,
+html[lang="bn"] .cd-label,
+html[lang="bn"] .date-note,
+html[lang="bn"] .lightbox-counter,
+html[lang="bn"] .rsvp-field > label,
+html[lang="bn"] .rsvp-field legend,
+html[lang="bn"] .credit { letter-spacing: 0.08em; }

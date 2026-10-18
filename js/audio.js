@@ -5,6 +5,7 @@
 // ever attempted from inside a user-gesture call stack.
 
 import { config } from './config.js'
+import { t, onLanguageChange } from './i18n.js'
 
 const PREF_KEY = 'invitation:audio'
 
@@ -31,7 +32,7 @@ export function initAudio() {
     const on = desired === 'on' && !audio.paused
     toggle.classList.toggle('is-playing', on)
     toggle.setAttribute('aria-pressed', String(desired === 'on'))
-    const label = on ? 'Pause background music' : 'Play background music'
+    const label = on ? t('js.audio.pause') : t('js.audio.play')
     toggle.setAttribute('aria-label', label)
     toggle.setAttribute('title', label)
   }
@@ -79,4 +80,6 @@ export function initAudio() {
   document.addEventListener('click', firstGesture, { capture: true, once: true })
 
   render()
+  // Keep the visible title/aria state in the active language.
+  onLanguageChange(render)
 }

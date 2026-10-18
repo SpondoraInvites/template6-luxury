@@ -3,13 +3,13 @@
 // Messenger, Telegram, email). The venue section uses one inline; a floating
 // one sticks to the bottom-right corner once the hero scrolls out of view.
 
-import { config } from './config.js'
+import { t } from './i18n.js'
 
 export function initShare() {
   if (!document.querySelector('[data-share-button]')) return
 
   const link = () => location.href
-  const text = () => `${config.couple.title}\nFriday, February 19, 2027 · 4:00 PM — Meridian Grand Ballroom, Dhaka`
+  const text = () => t('js.share.text')
   const enc = encodeURIComponent
 
   const makeActions = (menu) => {
@@ -29,7 +29,7 @@ export function initShare() {
         ta.remove()
       }
       const original = copyButton.textContent
-      copyButton.textContent = 'Copied!'
+      copyButton.textContent = t('js.share.copied')
       setTimeout(() => { copyButton.textContent = original }, 1600)
     }
     return {
@@ -39,7 +39,7 @@ export function initShare() {
       // web dialog needs a registered Facebook app ID
       messenger: () => window.open(`fb-messenger://share/?link=${enc(link())}`, '_blank', 'noopener'),
       telegram: () => window.open(`https://t.me/share/url?url=${enc(link())}&text=${enc(text())}`, '_blank', 'noopener'),
-      email: () => { location.href = `mailto:?subject=${enc(config.couple.title)}&body=${enc(`${text()}\n${link()}`)}` },
+      email: () => { location.href = `mailto:?subject=${enc(t('js.share.subject'))}&body=${enc(`${t('js.share.text')}\n${link()}`)}` },
     }
   }
 

@@ -7,6 +7,7 @@
 // (cover.js pauses the global timeline).
 
 import { config } from './config.js'
+import { localDigits, onLanguageChange } from './i18n.js'
 
 const UNITS = ['days', 'hours', 'minutes', 'seconds']
 
@@ -42,8 +43,9 @@ export function initScroll() {
     for (const u of UNITS) {
       const el = nums[u]
       if (!el) continue
-      if (el.textContent !== parts[u]) {
-        el.textContent = parts[u]
+      const value = localDigits(parts[u]) // Bengali numerals when active
+      if (el.textContent !== value) {
+        el.textContent = value
         if (animate && window.gsap) {
           gsap.fromTo(el, { yPercent: -32, autoAlpha: 0.35 },
             { yPercent: 0, autoAlpha: 1, duration: 0.32, ease: 'power1.out', overwrite: 'auto' })
@@ -55,6 +57,8 @@ export function initScroll() {
   if (nums.days) {
     renderCountdown(false)
     timer = setInterval(() => { if (renderCountdown(true)) clearInterval(timer) }, 1000)
+    // Re-render (without the flip animation) after a language switch.
+    onLanguageChange(() => renderCountdown(false))
   }
 
   if (!window.gsap || !window.ScrollTrigger) return

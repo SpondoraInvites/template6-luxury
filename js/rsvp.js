@@ -3,6 +3,7 @@
 // fallback channel. Name is the only required field.
 
 import { config } from './config.js'
+import { t } from './i18n.js'
 
 export function initRsvp() {
   const form = document.getElementById('rsvp-form')
@@ -23,12 +24,12 @@ export function initRsvp() {
     error.hidden = true
     const accept = form.elements.attend.value === 'accept'
     const lines = [
-      `${config.couple.title} — RSVP`,
-      `Name: ${name}`,
-      `Attending: ${accept ? 'Joyfully accept' : 'Regretfully decline'}`,
+      t('js.rsvp.subject'),
+      `${t('js.rsvp.nameField')} ${name}`,
+      `${t('js.rsvp.attending')} ${t(accept ? 'rsvp.accept' : 'rsvp.decline')}`,
     ]
     if (accept) {
-      lines.push(`Guests: ${guests.options[guests.selectedIndex].text}`)
+      lines.push(`${t('js.rsvp.guestsField')} ${guests.options[guests.selectedIndex].text}`)
     }
     const noteText = note.value.trim()
     if (noteText) lines.push('', noteText)

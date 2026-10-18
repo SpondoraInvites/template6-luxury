@@ -35,6 +35,9 @@ js/share.js           Share menu (copy link / WhatsApp / Messenger /
                       Telegram / email) + floating share button
 js/lightbox.js        Gallery lightbox (keyboard + swipe)
 js/audio.js           Background-music toggle with fade + persistence
+js/i18n.js            EN / বাংলা bilingual support — the fixed top-right
+                      EN/বাং switch, the [data-i18n] text map (all strings
+                      live here), persistence and JS-string helpers
 vendor/gsap/          Vendored GSAP + ScrollTrigger (no CDN)
 assets/gallery/       900×900 placeholder art — drop real photos here
                       (JPGs rename to gallery-N.jpg, update index.html)
@@ -45,7 +48,9 @@ assets/audio/         Looped background track (placeholder CC0 piano)
 
 1. `js/config.js` — date/time (`event.iso`), the RSVP WhatsApp number and
    email. All other content (names, story, three celebrations, address,
-   gallery captions) lives in `index.html` marked by section comments.
+   gallery captions) lives in `index.html` marked by section comments; both
+   language versions of every editable text live in `js/i18n.js`
+   (`STRINGS.en` / `STRINGS.bn`).
 2. The Google Calendar links and the map embed are in `index.html`; update
    the `dates=`/`text=` params and the map query (`.../maps?q=...`).
 3. Replace `assets/gallery/gallery-*.svg` with real photos (square crops

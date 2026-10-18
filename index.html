@@ -13,7 +13,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Ballet&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Ballet&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600&family=Noto+Serif+Bengali:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="modulepreload" href="js/main.js">
 
@@ -39,6 +39,16 @@
     <span class="audio-waves" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
   </button>
 
+  <!-- Language toggle — EN / বাংলা, fixed top-right so it sits above the cover
+       (that page holds the translatable texts) while never colliding with the
+       bottom-right cluster (skip · share) or the lightbox close button, which
+       handily own the lower/free corner; the toggle bows out while the
+       lightbox is open. Wired by js/i18n.js (hidden without JS). -->
+  <div class="lang-toggle" role="group" data-i18n-attrs="aria-label:lang.label">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="bn" aria-pressed="false">বাং</button>
+  </div>
+
   <!-- Development-only replay control (enabled with ?dev=1) -->
   <button class="dev-replay" type="button" aria-label="Replay the opening animation (development mode)" hidden>Replay opening</button>
 
@@ -48,7 +58,7 @@
     <!-- Pearl stage revealed as the panels part -->
     <div class="cover-inner">
       <div class="cover-light"></div>
-      <h2 class="cover-enter-names" id="cover-title" aria-label="The invitation is ready">You are invited</h2>
+      <h2 class="cover-enter-names" id="cover-title" data-i18n="cover.title" data-i18n-attrs="aria-label:cover.title">You are invited</h2>
     </div>
 
     <!-- Starburst sparks (spawned by the choreography) -->
@@ -92,11 +102,11 @@
               <path class="arch-gem" d="M160 48 L165.6 55 L160 62 L154.4 55 Z"/>
             </svg>
           </div>
-          <button class="poster-cue" id="cover-cue" type="button">Tap to open the invitation</button>
+          <button class="poster-cue" id="cover-cue" type="button" data-i18n="cover.cue">Tap to open the invitation</button>
       </div>
 
-      <p class="poster-family">With the blessings of their families</p>
-      <h2 class="poster-names">Samiha <span class="poster-and">&amp;</span> Rayan</h2>
+      <p class="poster-family" data-i18n="cover.blessing">With the blessings of their families</p>
+      <h2 class="poster-names"><span data-i18n="names.samiha">Samiha</span> <span class="poster-and" data-i18n="names.and">&amp;</span> <span data-i18n="names.rayan">Rayan</span></h2>
       <svg class="poster-beads" viewBox="0 0 320 26" fill="none" aria-hidden="true">
         <circle class="dot" cx="24" cy="13" r="2.2"/>
         <circle class="dot" cx="52" cy="13" r="1.6"/>
@@ -126,7 +136,7 @@
 
     <div class="cover-petals" aria-hidden="true"></div>
 
-    <button class="cover-skip" type="button" aria-label="Skip the opening animation">Skip</button>
+    <button class="cover-skip" type="button" data-i18n="cover.skip" data-i18n-attrs="aria-label:cover.skipAria" aria-label="Skip the opening animation">Skip</button>
   </div>
 
   <!-- Ambient falling petals & gold sparks (spawned once the cover opens) -->
@@ -172,7 +182,7 @@
         <circle class="dot" cx="118" cy="58" r="2"/>
       </svg>
 
-      <p class="invocation">Together with their noble families</p>
+      <p class="invocation" data-i18n="main.invocation">Together with their noble families</p>
       <svg class="divider" viewBox="0 0 360 40" fill="none" aria-hidden="true">
         <path class="draw" d="M18 20 C68 12 118 28 148 20"/>
         <path class="draw" d="M342 20 C292 12 242 28 212 20"/>
@@ -181,23 +191,23 @@
         <circle class="dot" cx="18" cy="20" r="2"/>
         <circle class="dot" cx="342" cy="20" r="2"/>
       </svg>
-      <p class="hero-announce">request the honour of your presence</p>
+      <p class="hero-announce" data-i18n="main.announce">request the honour of your presence</p>
       <h1 class="hero-names" tabindex="-1">
-        <span>Samiha</span>
-        <span class="hero-and">&amp;</span>
-        <span>Rayan</span>
+        <span data-i18n="names.samiha">Samiha</span>
+        <span class="hero-and" data-i18n="names.and">&amp;</span>
+        <span data-i18n="names.rayan">Rayan</span>
       </h1>
-      <p class="hero-invite">joyfully invite you to celebrate their wedding</p>
+      <p class="hero-invite" data-i18n="main.invite">joyfully invite you to celebrate their wedding</p>
       <p class="hero-date">
-        <a class="date-note" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;dates=20270219T100000Z%2F20270219T120000Z&amp;text=Wedding%20of%20Samiha%20%26%20Rayan" target="_blank" rel="noopener">Save the date</a>
-        <span class="date-line">Friday, February 19, 2027 · 4:00 PM</span>
+        <a class="date-note" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;dates=20270219T100000Z%2F20270219T120000Z&amp;text=Wedding%20of%20Samiha%20%26%20Rayan" target="_blank" rel="noopener" data-i18n="main.saveDate">Save the date</a>
+        <span class="date-line" data-i18n="main.dateLine">Friday, February 19, 2027 · 4:00 PM</span>
       </p>
-      <p class="scroll-cue" aria-hidden="true">Scroll ↓</p>
+      <p class="scroll-cue" aria-hidden="true" data-i18n="main.scrollCue">Scroll ↓</p>
     </header>
 
     <!-- 2 · Celebration message -->
     <section class="section" id="message" aria-labelledby="message-title">
-      <h2 id="message-title" class="mask-h"><span class="mask"><span class="mask-line">A Celebration of Love</span></span></h2>
+      <h2 id="message-title" class="mask-h"><span class="mask"><span class="mask-line" data-i18n="message.title">A Celebration of Love</span></span></h2>
       <svg class="divider divider--anim" viewBox="0 0 360 40" fill="none" aria-hidden="true">
         <path class="draw" d="M18 20 C68 12 118 28 148 20"/>
         <path class="draw" d="M342 20 C292 12 242 28 212 20"/>
@@ -207,32 +217,32 @@
         <circle class="dot" cx="342" cy="20" r="2"/>
       </svg>
       <blockquote>
-        <p>“Whatever our souls are made of, his and mine are the same.” — Emily Brontë</p>
+        <p data-i18n="message.quote">“Whatever our souls are made of, his and mine are the same.” — Emily Brontë</p>
       </blockquote>
-      <p>Please join us as we begin this new chapter surrounded by the people we hold dearest.</p>
+      <p data-i18n="message.body">Please join us as we begin this new chapter surrounded by the people we hold dearest.</p>
     </section>
 
     <!-- 3 · Countdown -->
     <section class="section section--tint" id="countdown" aria-labelledby="countdown-title">
       <div class="wrap">
-        <h2 id="countdown-title" class="mask-h"><span class="mask"><span class="mask-line">Counting Down</span></span></h2>
-        <p class="countdown-fallback">To the day we say I do</p>
+        <h2 id="countdown-title" class="mask-h"><span class="mask"><span class="mask-line" data-i18n="countdown.title">Counting Down</span></span></h2>
+        <p class="countdown-fallback" data-i18n="countdown.fallback">To the day we say I do</p>
         <!-- aria-live off: digits swap every second — that must never be announced -->
-        <div class="countdown" role="timer" aria-live="off" aria-label="Countdown to the wedding ceremony">
-          <div class="cd-unit"><span class="mask"><span class="mask-line"><span class="cd-num" data-cd="days">0</span></span></span><span class="cd-label">Days</span></div>
+        <div class="countdown" role="timer" aria-live="off" data-i18n-attrs="aria-label:countdown.aria" aria-label="Countdown to the wedding ceremony">
+          <div class="cd-unit"><span class="mask"><span class="mask-line"><span class="cd-num" data-cd="days">0</span></span></span><span class="cd-label" data-i18n="cd.days">Days</span></div>
           <span class="cd-sep" aria-hidden="true">·</span>
-          <div class="cd-unit"><span class="mask"><span class="mask-line"><span class="cd-num" data-cd="hours">0</span></span></span><span class="cd-label">Hours</span></div>
+          <div class="cd-unit"><span class="mask"><span class="mask-line"><span class="cd-num" data-cd="hours">0</span></span></span><span class="cd-label" data-i18n="cd.hours">Hours</span></div>
           <span class="cd-sep" aria-hidden="true">·</span>
-          <div class="cd-unit"><span class="mask"><span class="mask-line"><span class="cd-num" data-cd="minutes">0</span></span></span><span class="cd-label">Minutes</span></div>
+          <div class="cd-unit"><span class="mask"><span class="mask-line"><span class="cd-num" data-cd="minutes">0</span></span></span><span class="cd-label" data-i18n="cd.minutes">Minutes</span></div>
           <span class="cd-sep" aria-hidden="true">·</span>
-          <div class="cd-unit"><span class="mask"><span class="mask-line"><span class="cd-num" data-cd="seconds">0</span></span></span><span class="cd-label">Seconds</span></div>
+          <div class="cd-unit"><span class="mask"><span class="mask-line"><span class="cd-num" data-cd="seconds">0</span></span></span><span class="cd-label" data-i18n="cd.seconds">Seconds</span></div>
         </div>
       </div>
     </section>
 
     <!-- 4 · Our story -->
     <section class="section" id="story" aria-labelledby="story-title">
-      <h2 id="story-title" class="mask-h"><span class="mask"><span class="mask-line">Our Story</span></span></h2>
+      <h2 id="story-title" class="mask-h"><span class="mask"><span class="mask-line" data-i18n="story.title">Our Story</span></span></h2>
       <svg class="divider divider--anim" viewBox="0 0 360 40" fill="none" aria-hidden="true">
         <path class="draw" d="M18 20 C68 12 118 28 148 20"/>
         <path class="draw" d="M342 20 C292 12 242 28 212 20"/>
@@ -244,18 +254,18 @@
       <ol class="story">
         <li class="moment">
           <span class="moment-date">2021</span>
-          <h3>The First Hello</h3>
-          <p>A chance meeting at a family gathering — one conversation that neither of us wanted to end.</p>
+          <h3 data-i18n="story.one.title">The First Hello</h3>
+          <p data-i18n="story.one.body">A chance meeting at a family gathering — one conversation that neither of us wanted to end.</p>
         </li>
         <li class="moment">
           <span class="moment-date">2023</span>
-          <h3>The Decision</h3>
-          <p>With our families’ blessings, we said yes to a lifetime of growing together in faith and friendship.</p>
+          <h3 data-i18n="story.two.title">The Decision</h3>
+          <p data-i18n="story.two.body">With our families’ blessings, we said yes to a lifetime of growing together in faith and friendship.</p>
         </li>
         <li class="moment">
           <span class="moment-date">2027</span>
-          <h3>The Beginning</h3>
-          <p>Now, surrounded by the people we love, we prepare to begin our new life — and we want you there.</p>
+          <h3 data-i18n="story.three.title">The Beginning</h3>
+          <p data-i18n="story.three.body">Now, surrounded by the people we love, we prepare to begin our new life — and we want you there.</p>
         </li>
       </ol>
     </section>
@@ -263,7 +273,7 @@
     <!-- 5 · The celebrations -->
     <section class="section section--tint" id="events" aria-labelledby="events-title">
       <div class="wrap">
-        <h2 id="events-title" class="mask-h"><span class="mask"><span class="mask-line">The Celebrations</span></span></h2>
+        <h2 id="events-title" class="mask-h"><span class="mask"><span class="mask-line" data-i18n="events.title">The Celebrations</span></span></h2>
         <svg class="divider divider--anim" viewBox="0 0 360 40" fill="none" aria-hidden="true">
           <path class="draw" d="M18 20 C68 12 118 28 148 20"/>
           <path class="draw" d="M342 20 C292 12 242 28 212 20"/>
@@ -272,53 +282,53 @@
           <circle class="dot" cx="18" cy="20" r="2"/>
           <circle class="dot" cx="342" cy="20" r="2"/>
         </svg>
-        <p class="events-intro">Three evenings of music, laughter and blessings — dress theme: plum &amp; rose gold.</p>
+        <p class="events-intro" data-i18n="events.intro">Three evenings of music, laughter and blessings — dress theme: plum &amp; rose gold.</p>
         <div class="event-cards">
           <article class="event-card">
-            <p class="event-tag">Mehndi Night</p>
-            <h3>An evening of henna, dhol and dancing</h3>
-            <p class="event-when">Thursday, February 18, 2027 · 6:00 PM</p>
-            <p class="event-venue">The Courtyard, House 42, Road 9, Baridhara, Dhaka</p>
+            <p class="event-tag" data-i18n="event.mehndi.tag">Mehndi Night</p>
+            <h3 data-i18n="event.mehndi.head">An evening of henna, dhol and dancing</h3>
+            <p class="event-when" data-i18n="event.mehndi.when">Thursday, February 18, 2027 · 6:00 PM</p>
+            <p class="event-venue" data-i18n="event.mehndi.venue">The Courtyard, House 42, Road 9, Baridhara, Dhaka</p>
             <div class="event-links">
               <a class="event-link" href="https://www.google.com/maps/search/?api=1&amp;query=Baridhara+Road+9+Dhaka" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21 C12 21 5 14.5 5 9.5 A7 7 0 0 1 19 9.5 C19 14.5 12 21 12 21 Z"/><circle cx="12" cy="9.5" r="2.6"/></svg>
-                Map
+                <span data-i18n="event.map">Map</span>
               </a>
               <a class="event-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;dates=20270218T120000Z%2F20270218T140000Z&amp;text=Mehndi%20of%20Samiha%20%26%20Rayan" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10 L20 10 M8 3 L8 7 M16 3 L16 7"/></svg>
-                Calendar
+                <span data-i18n="event.calendar">Calendar</span>
               </a>
             </div>
           </article>
           <article class="event-card event-card--featured">
-            <p class="event-tag">Nikah · Main Ceremony</p>
-            <h3>The wedding, witnessed by family and friends</h3>
-            <p class="event-when">Friday, February 19, 2027 · 4:00 PM</p>
-            <p class="event-venue">Meridian Grand Ballroom, Gulshan Avenue, Dhaka 1212</p>
+            <p class="event-tag" data-i18n="event.nikah.tag">Nikah · Main Ceremony</p>
+            <h3 data-i18n="event.nikah.head">The wedding, witnessed by family and friends</h3>
+            <p class="event-when" data-i18n="event.nikah.when">Friday, February 19, 2027 · 4:00 PM</p>
+            <p class="event-venue" data-i18n="event.nikah.venue">Meridian Grand Ballroom, Gulshan Avenue, Dhaka 1212</p>
             <div class="event-links">
               <a class="event-link" href="https://www.google.com/maps/search/?api=1&amp;query=Meridian+Grand+Ballroom+Gulshan+Dhaka" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21 C12 21 5 14.5 5 9.5 A7 7 0 0 1 19 9.5 C19 14.5 12 21 12 21 Z"/><circle cx="12" cy="9.5" r="2.6"/></svg>
-                Map
+                <span data-i18n="event.map">Map</span>
               </a>
               <a class="event-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;dates=20270219T100000Z%2F20270219T120000Z&amp;text=Wedding%20of%20Samiha%20%26%20Rayan" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10 L20 10 M8 3 L8 7 M16 3 L16 7"/></svg>
-                Calendar
+                <span data-i18n="event.calendar">Calendar</span>
               </a>
             </div>
           </article>
           <article class="event-card">
-            <p class="event-tag">Walima Reception</p>
-            <h3>A festive dinner celebrating the newlyweds</h3>
-            <p class="event-when">Saturday, February 20, 2027 · 7:00 PM</p>
-            <p class="event-venue">Meridian Grand Ballroom, Gulshan Avenue, Dhaka 1212</p>
+            <p class="event-tag" data-i18n="event.walima.tag">Walima Reception</p>
+            <h3 data-i18n="event.walima.head">A festive dinner celebrating the newlyweds</h3>
+            <p class="event-when" data-i18n="event.walima.when">Saturday, February 20, 2027 · 7:00 PM</p>
+            <p class="event-venue" data-i18n="event.nikah.venue">Meridian Grand Ballroom, Gulshan Avenue, Dhaka 1212</p>
             <div class="event-links">
               <a class="event-link" href="https://www.google.com/maps/search/?api=1&amp;query=Meridian+Grand+Ballroom+Gulshan+Dhaka" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21 C12 21 5 14.5 5 9.5 A7 7 0 0 1 19 9.5 C19 14.5 12 21 12 21 Z"/><circle cx="12" cy="9.5" r="2.6"/></svg>
-                Map
+                <span data-i18n="event.map">Map</span>
               </a>
               <a class="event-link" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;dates=20270220T130000Z%2F20270220T150000Z&amp;text=Walima%20of%20Samiha%20%26%20Rayan" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10 L20 10 M8 3 L8 7 M16 3 L16 7"/></svg>
-                Calendar
+                <span data-i18n="event.calendar">Calendar</span>
               </a>
             </div>
           </article>
@@ -328,7 +338,7 @@
 
     <!-- 6 · Gallery — replace the placeholder art in assets/gallery/ -->
     <section class="section" id="gallery" aria-labelledby="gallery-title">
-      <h2 id="gallery-title" class="mask-h"><span class="mask"><span class="mask-line">Moments &amp; Memories</span></span></h2>
+      <h2 id="gallery-title" class="mask-h"><span class="mask"><span class="mask-line" data-i18n="gallery.title">Moments &amp; Memories</span></span></h2>
       <svg class="divider divider--anim" viewBox="0 0 360 40" fill="none" aria-hidden="true">
         <path class="draw" d="M18 20 C68 12 118 28 148 20"/>
         <path class="draw" d="M342 20 C292 12 242 28 212 20"/>
@@ -337,20 +347,20 @@
         <circle class="dot" cx="18" cy="20" r="2"/>
         <circle class="dot" cx="342" cy="20" r="2"/>
       </svg>
-      <p class="gallery-intro">A few glimpses of us and of the details we love.</p>
+      <p class="gallery-intro" data-i18n="gallery.intro">A few glimpses of us and of the details we love.</p>
       <div class="gallery-grid">
-        <figure class="gallery-item"><img src="assets/gallery/gallery-1.svg" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
-        <figure class="gallery-item"><img src="assets/gallery/gallery-2.svg" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
-        <figure class="gallery-item"><img src="assets/gallery/gallery-3.svg" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
-        <figure class="gallery-item"><img src="assets/gallery/gallery-4.svg" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
-        <figure class="gallery-item"><img src="assets/gallery/gallery-5.svg" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
-        <figure class="gallery-item"><img src="assets/gallery/gallery-6.svg" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
+        <figure class="gallery-item"><img src="assets/gallery/gallery-1.svg" data-i18n-attrs="alt:gallery.alt" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
+        <figure class="gallery-item"><img src="assets/gallery/gallery-2.svg" data-i18n-attrs="alt:gallery.alt" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
+        <figure class="gallery-item"><img src="assets/gallery/gallery-3.svg" data-i18n-attrs="alt:gallery.alt" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
+        <figure class="gallery-item"><img src="assets/gallery/gallery-4.svg" data-i18n-attrs="alt:gallery.alt" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
+        <figure class="gallery-item"><img src="assets/gallery/gallery-5.svg" data-i18n-attrs="alt:gallery.alt" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
+        <figure class="gallery-item"><img src="assets/gallery/gallery-6.svg" data-i18n-attrs="alt:gallery.alt" alt="Placeholder — replace with a couple photo" loading="lazy" width="900" height="900"></figure>
       </div>
     </section>
 
     <!-- 7 · When & Where -->
     <section class="section" id="details" aria-labelledby="details-title">
-      <h2 id="details-title" class="mask-h"><span class="mask"><span class="mask-line">When &amp; Where</span></span></h2>
+      <h2 id="details-title" class="mask-h"><span class="mask"><span class="mask-line" data-i18n="details.title">When &amp; Where</span></span></h2>
       <svg class="divider divider--anim" viewBox="0 0 360 40" fill="none" aria-hidden="true">
         <path class="draw" d="M18 20 C68 12 118 28 148 20"/>
         <path class="draw" d="M342 20 C292 12 242 28 212 20"/>
@@ -362,24 +372,24 @@
       <div class="plate">
         <dl class="details">
           <div>
-            <dt>Date</dt>
-            <dd>Friday, February 19, 2027</dd>
+            <dt data-i18n="details.date">Date</dt>
+            <dd data-i18n="details.dateValue">Friday, February 19, 2027</dd>
           </div>
           <div>
-            <dt>Time</dt>
-            <dd>4:00 PM</dd>
+            <dt data-i18n="details.time">Time</dt>
+            <dd data-i18n="details.timeValue">4:00 PM</dd>
           </div>
           <div>
-            <dt>Venue</dt>
-            <dd>Meridian Grand Ballroom</dd>
+            <dt data-i18n="details.venue">Venue</dt>
+            <dd data-i18n="details.venueValue">Meridian Grand Ballroom</dd>
           </div>
           <div>
-            <dt>Address</dt>
-            <dd>Gulshan Avenue, Dhaka 1212, Bangladesh</dd>
+            <dt data-i18n="details.address">Address</dt>
+            <dd data-i18n="details.addressValue">Gulshan Avenue, Dhaka 1212, Bangladesh</dd>
           </div>
         </dl>
       </div>
-      <a class="cta" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;dates=20270219T100000Z%2F20270219T120000Z&amp;text=Wedding%20of%20Samiha%20%26%20Rayan" rel="noopener">Add to Google Calendar</a>
+      <a class="cta" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;dates=20270219T100000Z%2F20270219T120000Z&amp;text=Wedding%20of%20Samiha%20%26%20Rayan" rel="noopener" data-i18n="details.cta">Add to Google Calendar</a>
     </section>
 
     <!-- 8 · Venue map -->
@@ -402,22 +412,23 @@
         <circle class="dot" cx="452" cy="82" r="1.4"/>
         <path class="venue-gem" d="M280 88 L286 95 L280 102 L274 95 Z"/>
       </svg>
-      <h2 id="venue-title" class="mask-h"><span class="mask"><span class="mask-line">Getting There</span></span></h2>
-      <p>The celebration takes place at the heart of Gulshan, Dhaka.</p>
+      <h2 id="venue-title" class="mask-h"><span class="mask"><span class="mask-line" data-i18n="venue.title">Getting There</span></span></h2>
+      <p data-i18n="venue.body">The celebration takes place at the heart of Gulshan, Dhaka.</p>
       <div class="map-embed">
         <iframe title="Map of the venue"
+                data-i18n-attrs="title:venue.mapTitle"
                 src="https://www.google.com/maps?q=Meridian+Grand+Ballroom+Gulshan+Avenue+Dhaka&amp;output=embed"
                 loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-      <a class="cta" href="https://www.google.com/maps/search/?api=1&amp;query=Meridian+Grand+Ballroom+Gulshan+Avenue+Dhaka" target="_blank" rel="noopener">Open in Google Maps</a>
+      <a class="cta" href="https://www.google.com/maps/search/?api=1&amp;query=Meridian+Grand+Ballroom+Gulshan+Avenue+Dhaka" target="_blank" rel="noopener" data-i18n="venue.cta">Open in Google Maps</a>
       <div class="share">
-        <button class="cta" type="button" data-share-button aria-expanded="false" aria-controls="share-menu">Share this invitation</button>
+        <button class="cta" type="button" data-share-button aria-expanded="false" aria-controls="share-menu" data-i18n="share.cta">Share this invitation</button>
         <div class="share-menu" id="share-menu" data-share-menu hidden>
-          <button type="button" data-share="copy">Copy link</button>
+          <button type="button" data-share="copy" data-i18n="share.copy">Copy link</button>
           <button type="button" data-share="whatsapp">WhatsApp</button>
           <button type="button" data-share="messenger">Messenger</button>
           <button type="button" data-share="telegram">Telegram</button>
-          <button type="button" data-share="email">Email</button>
+          <button type="button" data-share="email" data-i18n="share.email">Email</button>
         </div>
       </div>
     </section>
@@ -425,7 +436,7 @@
     <!-- 9 · RSVP — form composes a pre-filled WhatsApp reply (no backend) -->
     <section class="section section--tint" id="rsvp" aria-labelledby="rsvp-title">
       <div class="wrap">
-        <h2 id="rsvp-title" class="mask-h"><span class="mask"><span class="mask-line">Will You Join Us?</span></span></h2>
+        <h2 id="rsvp-title" class="mask-h"><span class="mask"><span class="mask-line" data-i18n="rsvp.title">Will You Join Us?</span></span></h2>
         <svg class="divider divider--anim" viewBox="0 0 360 40" fill="none" aria-hidden="true">
           <path class="draw" d="M18 20 C68 12 118 28 148 20"/>
           <path class="draw" d="M342 20 C292 12 242 28 212 20"/>
@@ -434,43 +445,43 @@
           <circle class="dot" cx="18" cy="20" r="2"/>
           <circle class="dot" cx="342" cy="20" r="2"/>
         </svg>
-        <p class="rsvp-deadline">Kindly respond by 25 January 2027</p>
+        <p class="rsvp-deadline" data-i18n="rsvp.deadline">Kindly respond by 25 January 2027</p>
         <form class="rsvp-form plate" id="rsvp-form" novalidate>
           <div class="rsvp-field">
-            <label for="rsvp-name">Your name</label>
-            <input id="rsvp-name" name="name" type="text" autocomplete="name" required placeholder="Full name">
-            <p class="rsvp-error" data-rsvp-error hidden>Please tell us your name</p>
+            <label for="rsvp-name" data-i18n="rsvp.name">Your name</label>
+            <input id="rsvp-name" name="name" type="text" autocomplete="name" required placeholder="Full name" data-i18n-attrs="placeholder:rsvp.namePlaceholder">
+            <p class="rsvp-error" data-rsvp-error hidden data-i18n="rsvp.nameError">Please tell us your name</p>
           </div>
           <fieldset class="rsvp-field">
-            <legend>Will you attend?</legend>
+            <legend data-i18n="rsvp.attend">Will you attend?</legend>
             <div class="rsvp-choices">
-              <label><input type="radio" name="attend" value="accept" checked><span>Joyfully accept</span></label>
-              <label><input type="radio" name="attend" value="decline"><span>Regretfully decline</span></label>
+              <label><input type="radio" name="attend" value="accept" checked><span data-i18n="rsvp.accept">Joyfully accept</span></label>
+              <label><input type="radio" name="attend" value="decline"><span data-i18n="rsvp.decline">Regretfully decline</span></label>
             </div>
           </fieldset>
           <div class="rsvp-field">
-            <label for="rsvp-guests">Number of guests</label>
+            <label for="rsvp-guests" data-i18n="rsvp.guests">Number of guests</label>
             <select id="rsvp-guests" name="guests">
-              <option value="1">1 guest</option>
-              <option value="2">2 guests</option>
-              <option value="3">3 guests</option>
-              <option value="4">4 or more guests</option>
+              <option value="1" data-i18n="rsvp.g1">1 guest</option>
+              <option value="2" data-i18n="rsvp.g2">2 guests</option>
+              <option value="3" data-i18n="rsvp.g3">3 guests</option>
+              <option value="4" data-i18n="rsvp.g4">4 or more guests</option>
             </select>
           </div>
           <div class="rsvp-field">
-            <label for="rsvp-note">A note for us (optional)</label>
-            <textarea id="rsvp-note" name="note" rows="3" placeholder="Wishes, dietary needs, questions…"></textarea>
+            <label for="rsvp-note" data-i18n="rsvp.note">A note for us (optional)</label>
+            <textarea id="rsvp-note" name="note" rows="3" placeholder="Wishes, dietary needs, questions…" data-i18n-attrs="placeholder:rsvp.notePlaceholder"></textarea>
           </div>
-          <button class="cta" type="submit">Send via WhatsApp</button>
-          <a class="rsvp-email" data-rsvp-email href="#" rel="noopener">or reply by email</a>
+          <button class="cta" type="submit" data-i18n="rsvp.send">Send via WhatsApp</button>
+          <a class="rsvp-email" data-rsvp-email href="#" rel="noopener" data-i18n="rsvp.emailLink">or reply by email</a>
         </form>
       </div>
     </section>
 
     <!-- 10 · Closing -->
     <section class="section closing" id="closing" aria-labelledby="closing-title">
-      <h2 id="closing-title" class="mask-h"><span class="mask"><span class="mask-line">With Heartfelt Gratitude</span></span></h2>
-      <p>Your presence and prayers are the greatest gift. We look forward to celebrating with you.</p>
+      <h2 id="closing-title" class="mask-h"><span class="mask"><span class="mask-line" data-i18n="closing.title">With Heartfelt Gratitude</span></span></h2>
+      <p data-i18n="closing.body">Your presence and prayers are the greatest gift. We look forward to celebrating with you.</p>
       <svg class="divider divider--anim" viewBox="0 0 360 40" fill="none" aria-hidden="true">
         <path class="draw" d="M18 20 C68 12 118 28 148 20"/>
         <path class="draw" d="M342 20 C292 12 242 28 212 20"/>
@@ -479,7 +490,7 @@
         <circle class="dot" cx="18" cy="20" r="2"/>
         <circle class="dot" cx="342" cy="20" r="2"/>
       </svg>
-      <p class="signoff"><span class="mask"><span class="mask-line">Samiha &amp; Rayan</span></span></p>
+      <p class="signoff"><span class="mask"><span class="mask-line" data-i18n="names.whole">Samiha &amp; Rayan</span></span></p>
       <svg class="finale" viewBox="0 0 480 240" fill="none" aria-hidden="true">
         <path class="draw" d="M96 198 C160 172 200 170 240 174 C280 170 320 172 384 198"/>
         <circle class="draw" cx="206" cy="128" r="58"/>
@@ -515,11 +526,11 @@
   <!-- Floating share — appears once the hero scrolls out of view -->
   <div class="float-share">
     <div class="share-menu share-menu--float" id="share-menu-float" data-share-menu hidden>
-      <button type="button" data-share="copy">Copy link</button>
+      <button type="button" data-share="copy" data-i18n="share.copy">Copy link</button>
       <button type="button" data-share="whatsapp">WhatsApp</button>
       <button type="button" data-share="messenger">Messenger</button>
       <button type="button" data-share="telegram">Telegram</button>
-      <button type="button" data-share="email">Email</button>
+      <button type="button" data-share="email" data-i18n="share.email">Email</button>
     </div>
     <button class="float-share-button" type="button" data-share-button aria-expanded="false" aria-controls="share-menu-float">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
