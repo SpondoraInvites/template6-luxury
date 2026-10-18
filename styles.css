@@ -152,6 +152,13 @@ html.js .cover { display: block; }
   overflow: hidden;
   pointer-events: none;
 }
+.spark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 0 4px rgba(197, 141, 118, 0.8));
+}
+.spark svg { display: block; width: 100%; fill: currentColor; }
 
 /* Idle poster */
 .poster {
