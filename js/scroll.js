@@ -81,6 +81,13 @@ export function initScroll() {
       gsap.set('#hero .fan .dot', { autoAlpha: 0 })
       gsap.set('#hero .divider .flourish-gem', { scale: 0, autoAlpha: 0, transformOrigin: '50% 50%' })
 
+      // Prep every section divider's paths so the per-section timelines
+      // below actually ink-draw them into view (without this, the
+      // strokeDashoffset tweens animate an unset value → no visible draw).
+      for (const svg of document.querySelectorAll('.divider--anim')) {
+        prepDraw(svg.querySelectorAll('.draw'), prepped)
+      }
+
       const heroTl = gsap.timeline({ paused: true })
       heroTl
         .to('#hero .crest .draw', { strokeDashoffset: 0, duration: 0.9, stagger: 0.12, ease: 'power1.inOut' }, 0)
