@@ -1,0 +1,7 @@
+node_modules/
+.git/
+.wrangler/
+package.json
+bun.lock
+package-lock.json
+wrangler.jsonc
