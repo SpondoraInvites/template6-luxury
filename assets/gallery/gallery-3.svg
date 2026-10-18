@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+  <defs>
+    <radialGradient id="v" cx="50%" cy="45%" r="80%">
+      <stop offset="0" stop-color="#3A1D49"/>
+      <stop offset="1" stop-color="#31173E"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#v)"/>
+  <g stroke="#C58D76" stroke-width="3" fill="none" stroke-linecap="round">
+    <path d="M70 830 L362 752"/>
+    <path d="M70 830 L304 666"/>
+    <path d="M70 830 L234 596"/>
+    <path d="M70 830 L148 538"/>
+    <path d="M362 752 A302 302 0 0 0 148 538"/>
+    <path d="M292 770 A230 230 0 0 0 130 608"/>
+    <path d="M221 663 L235 679 221 695 207 679 Z" fill="#E5BFAC" stroke="none" opacity="0.9"/>
+    <circle cx="362" cy="752" r="5" fill="#E5BFAC" stroke="none"/>
+    <circle cx="304" cy="666" r="4" fill="#C58D76" stroke="none"/>
+    <circle cx="234" cy="596" r="4" fill="#C58D76" stroke="none"/>
+    <circle cx="148" cy="538" r="5" fill="#E5BFAC" stroke="none"/>
+    <path d="M830 70 L538 148"/>
+    <path d="M830 70 L596 234"/>
+    <path d="M830 70 L666 304"/>
+    <path d="M830 70 L752 362"/>
+    <path d="M538 148 A302 302 0 0 1 752 362"/>
+    <path d="M770 292 A230 230 0 0 1 608 130"/>
+    <path d="M679 205 L665 221 679 237 693 221 Z" fill="#E5BFAC" stroke="none" opacity="0.9"/>
+    <circle cx="538" cy="148" r="5" fill="#E5BFAC" stroke="none"/>
+    <circle cx="596" cy="234" r="4" fill="#C58D76" stroke="none"/>
+    <circle cx="666" cy="304" r="4" fill="#C58D76" stroke="none"/>
+    <circle cx="752" cy="362" r="5" fill="#E5BFAC" stroke="none"/>
+    <circle cx="450" cy="450" r="4" fill="#B79FC7" stroke="none"/>
+    <circle cx="418" cy="500" r="2.6" fill="#B79FC7" stroke="none" opacity="0.8"/>
+    <circle cx="496" cy="426" r="2.6" fill="#B79FC7" stroke="none" opacity="0.8"/>
+    <path d="M450 442 C480 442 504 466 504 496" opacity="0.5"/>
+    <path d="M412 452 C412 488 438 514 474 514" opacity="0.5"/>
+    <circle cx="474" cy="514" r="2.4" fill="#C58D76" stroke="none"/>
+  </g>
+  <text x="450" y="880" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="26" letter-spacing="3" fill="#8A6F86">placeholder · replace with a couple photo</text>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+  <defs>
+    <radialGradient id="v" cx="50%" cy="42%" r="80%">
+      <stop offset="0" stop-color="#3A1D49"/>
+      <stop offset="1" stop-color="#2A1335"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#v)"/>
+  <g stroke="#C58D76" stroke-width="2.8" fill="none" stroke-linecap="round">
+    <circle cx="410" cy="520" r="86"/>
+    <circle cx="510" cy="520" r="86" stroke="#E5BFAC"/>
+    <path d="M450 342 L454 353 465 357 454 361 450 372 446 361 435 357 446 353 Z" fill="#E5BFAC" stroke="none"/>
+    <path d="M420 690 C420 650 470 640 480 670 C488 694 452 700 420 690 Z"/>
+    <path d="M560 690 C560 650 510 640 500 670 C492 694 528 700 560 690 Z"/>
+    <path d="M470 695 L430 762"/>
+    <path d="M510 695 L550 762"/>
+    <path d="M484 682 L496 694 484 706 472 694 Z" fill="#E5BFAC" stroke="none" opacity="0.9"/>
+    <path d="M330 250 L334 261.5 345.5 265.5 334 269.5 330 281 326 269.5 314.5 265.5 326 261.5 Z" fill="#B79FC7" stroke="none"/>
+    <path d="M600 236 L604 247.5 615.5 251.5 604 255.5 600 267 596 255.5 584.5 251.5 596 247.5 Z" fill="#C58D76" stroke="none" opacity="0.7"/>
+    <path d="M180 480 L184 491.5 195.5 495.5 184 499.5 180 511 176 499.5 164.5 495.5 176 491.5 Z" fill="#C58D76" stroke="none" opacity="0.6"/>
+    <path d="M716 420 L720 431.5 731.5 435.5 720 439.5 716 451 712 439.5 700.5 435.5 712 431.5 Z" fill="#E5BFAC" stroke="none" opacity="0.6"/>
+    <path d="M130 812 C180 800 220 800 258 808" opacity="0.55"/>
+  </g>
+  <text x="450" y="880" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="26" letter-spacing="3" fill="#8A6F86">placeholder · replace with a couple photo</text>
+</svg>

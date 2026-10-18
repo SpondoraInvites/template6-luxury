@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
+  <defs>
+    <radialGradient id="v" cx="50%" cy="40%" r="80%">
+      <stop offset="0" stop-color="#31173E"/>
+      <stop offset="1" stop-color="#241030"/>
+    </radialGradient>
+    <g id="glass">
+      <path d="M-90 -140 C-30 -132 30 -132 90 -140 C58 -96 -58 -96 -90 -140 Z"/>
+      <path d="M0 -98 L0 -40"/>
+      <path d="M-40 -34 C-20 -40 20 -40 40 -34"/>
+    </g>
+  </defs>
+  <rect width="900" height="900" fill="url(#v)"/>
+  <g stroke="#C58D76" stroke-width="2.6" fill="none" stroke-linecap="round">
+    <use href="#glass" transform="translate(450 300) rotate(-10)"/>
+    <use href="#glass" transform="translate(310 470) rotate(8)"/>
+    <use href="#glass" transform="translate(590 470) rotate(-8)"/>
+    <use href="#glass" transform="translate(190 640) rotate(-10)"/>
+    <use href="#glass" transform="translate(450 660) rotate(6)"/>
+    <use href="#glass" transform="translate(710 640) rotate(10)"/>
+    <circle cx="368" cy="180" r="5" fill="#E5BFAC" stroke="none"/>
+    <circle cx="420" cy="150" r="3.6" fill="#B79FC7" stroke="none"/>
+    <circle cx="330" cy="210" r="3" fill="#B79FC7" stroke="none" opacity="0.8"/>
+    <circle cx="500" cy="176" r="2.6" fill="#E5BFAC" stroke="none" opacity="0.7"/>
+    <circle cx="250" cy="140" r="2.4" fill="#E5BFAC" stroke="none" opacity="0.6"/>
+    <circle cx="640" cy="230" r="3" fill="#E5BFAC" stroke="none" opacity="0.6"/>
+    <circle cx="700" cy="150" r="2" fill="#B79FC7" stroke="none" opacity="0.6"/>
+  </g>
+  <g stroke="#E5BFAC" stroke-width="1.6" fill="none" opacity="0.55">
+    <path d="M240 380 C232 380 226 386 226 394"/>
+    <path d="M660 380 C668 380 674 386 674 394"/>
+  </g>
+  <text x="450" y="880" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="26" letter-spacing="3" fill="#8A6F86">placeholder · replace with a couple photo</text>
+</svg>
