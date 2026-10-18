@@ -70,16 +70,49 @@ export function initScroll() {
     // it, so a mid-way throw still leaves a live handle to revert with.
     ctx = gsap.context(() => {})
     ctx.add(() => {
-      /* 1 · Hero — deco fans draw in from the corners, crest rings draw */
-      prepDraw(document.querySelectorAll('#hero .fan .draw'), prepped)
-      prepDraw(document.querySelectorAll('#hero .crest .draw'), prepped)
+      /* 1 · Hero — crest rings, name divider and deco fans ink-draw like the
+            section dividers below. The whole reveal is a paused timeline
+            gated on the cover: it plays as the cover lifts (invitation:open),
+            NOT at page load — otherwise the draws finish behind the cover and
+            the visitor never sees them. */
+      const heroDraws = document.querySelectorAll('#hero .fan .draw, #hero .crest .draw, #hero .divider .draw')
+      prepDraw(heroDraws, prepped)
       gsap.set('#hero .fan .fan-gem', { scale: 0, autoAlpha: 0, transformOrigin: '50% 50%' })
-      gsap.timeline({ scrollTrigger: { trigger: '#hero', start: 'top 90%' } })
+      gsap.set('#hero .fan .dot', { autoAlpha: 0 })
+      gsap.set('#hero .divider .flourish-gem', { scale: 0, autoAlpha: 0, transformOrigin: '50% 50%' })
+
+      const heroTl = gsap.timeline({ paused: true })
+      heroTl
         .to('#hero .crest .draw', { strokeDashoffset: 0, duration: 0.9, stagger: 0.12, ease: 'power1.inOut' }, 0)
+        .to('#hero .divider .draw', { strokeDashoffset: 0, duration: 0.7, stagger: 0.12, ease: 'power1.inOut' }, 0.35)
+        .to('#hero .divider .flourish-gem', { scale: 1, autoAlpha: 1, duration: 0.4, ease: 'back.out(2.2)' }, 0.75)
         .to('#hero .fan .draw', { strokeDashoffset: 0, duration: 1.4, stagger: 0.05, ease: 'power1.inOut' }, 0.25)
         .to('#hero .fan .dot', { autoAlpha: 1, duration: 0.4 }, 1.2)
         .to('#hero .fan .fan-gem', { scale: 1, autoAlpha: 1, duration: 0.4, ease: 'back.out(2.2)' }, 1.35)
-      gsap.set('#hero .fan .dot', { autoAlpha: 0 })
+
+      // Play on the GSAP clock (pauses with a hidden tab) just after the cover
+      // starts fading, so the draws kick in as the hero content fades in.
+      const cover = document.getElementById('cover')
+      const revealHero = () => { gsap.delayedCall(0.45, () => heroTl.play()) }
+      if (!cover || cover.dataset.state === 'open') revealHero()
+      else document.addEventListener('invitation:open', revealHero, { once: true })
+
+      // Dev replay (?dev=1): rewind the hero draws so the next open re-draws.
+      document.addEventListener('invitation:idle', () => {
+        heroTl.pause(0)
+        for (const el of heroDraws) {
+          const len = el.getTotalLength()
+          el.style.strokeDasharray = `${len} ${len}`
+          el.style.strokeDashoffset = len
+        }
+        gsap.set('#hero .fan .fan-gem', { scale: 0, autoAlpha: 0 })
+        gsap.set('#hero .fan .dot', { autoAlpha: 0 })
+        gsap.set('#hero .divider .flourish-gem', { scale: 0, autoAlpha: 0 })
+        if (!cover || cover.dataset.state === 'open') heroTl.play()
+        else document.addEventListener('invitation:open', revealHero, { once: true })
+      })
+
+      // Fans parallax out on scroll once they are on screen
       gsap.to('#hero .fan--tl', {
         yPercent: 14, ease: 'none',
         scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true },
